@@ -12,6 +12,7 @@ exports.comprobarPizarra = function(cb, pizarraNombre) {
             if(filas[0].nombre == pizarraNombre)
             {
                 cb(error, "existe");
+                return;
             }
         }
         cb(error, "noExiste");

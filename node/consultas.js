@@ -9,7 +9,7 @@ exports.comprobarPizarra = function(cb, pizarraNombre) {
             return;
         }
         for(let i = 0; i < filas.length; i++) {
-            if(filas[0].nombre == pizarraNombre)
+            if(filas[i].nombre == pizarraNombre)
             {
                 cb(error, "existe");
                 return;

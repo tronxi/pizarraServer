@@ -63,6 +63,7 @@ io.on('connect', function(socket) {
         //io.sockets.in(data).emit('message', 'socket');
     });
     socket.on('iniciar', function(data){
+        console.log(data);
         cl.getDatos(function(error, resultado){
             if(error){
                 throw error;
@@ -74,7 +75,6 @@ io.on('connect', function(socket) {
                 x: resultado[i].x,
                 y:resultado[i].y});
             }
-            console.log(obj);
             socket.emit('recibir-datos-iniciales', obj);
         }, data)
         

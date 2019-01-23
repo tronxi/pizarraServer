@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 cl = require('./node/consultas.js');
 
@@ -9,6 +12,14 @@ app.use(express.static(__dirname));
 var cors = require('cors')
  
 app.use(cors())
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
 
 var obj = [];
 
@@ -16,9 +27,34 @@ app.get('//', (req, res) =>
 {
     res.send('Servidor pizarra funcionando');
 });
+app.get('//pizarra/:nombre', (req, res) => {
+    let nombre = req.params.nombre;
 
-app.get('//pizarra', (req, res) => {
-    
+    cl.comprobarPizarra(function(error, resultado){
+        if(error){
+            throw error;
+        }
+        else
+        {
+            res.send(JSON.stringify(resultado));
+        }
+    }, nombre)
+
+})
+
+app.post('//pizarra', (req, res) => {
+    let nombre = req.body.nombre;
+
+    cl.crearPizarra(function(error, resultado){
+        if(error){
+            throw error;
+        }
+        else
+        {
+            res.send(JSON.stringify(resultado));
+        }
+    }, nombre)
+
 })
 
 io.on('connect', function(socket) {

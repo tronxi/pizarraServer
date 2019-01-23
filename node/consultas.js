@@ -55,3 +55,14 @@ exports.guardarDatos = function(cb, pizarraNombre, anx, any, x, y){
         cb(error, "creada");
     });
 }
+
+exports.getDatos = function(cb, pizarraNombre){
+    let qr2 = "select antx, anty, x, y from pizarra where nombre = '"+pizarraNombre+"'";
+    bd.query(qr2, function (error, filas){
+        if(error) {
+            console.log('error al conseguir datos');
+            return;
+        }
+        cb(error, filas);
+    });
+}

@@ -52,12 +52,6 @@ app.post('//pizarra', (req, res) => {
 
 io.on('connect', function(socket) {
     console.log('Un cliente se ha conectado');
-    socket.on('new-message', function(data) {
-        let json = JSON.parse(data);
-        console.log(json.sala);
-        console.log(json.mensaje);
-        io.sockets.in(json.sala).emit('message', json.mensaje);
-    });
     socket.on('union', function(data){
         socket.join(data);
         console.log('unido a sala ' + data);
@@ -69,11 +63,23 @@ io.on('connect', function(socket) {
         //io.sockets.in(data).emit('message', 'socket');
     });
     socket.on('iniciar', function(data){
-        socket.emit('recibir-datos-iniciales', obj);
+        cl.getDatos(function(error, resultado){
+            if(error){
+                throw error;
+            }
+            for(let i = 0; i < resultado.length; i++)
+            {
+                obj.push({antx: resultado[i].antx,
+                anty:resultado[i].anty,
+                x: resultado[i].x,
+                y:resultado[i].y});
+            }
+            socket.emit('recibir-datos-iniciales', obj);
+        }, data)
+        
     });
 
     socket.on('nuevo-punto', function(data){
-        obj.push(data);
         let json =  JSON.parse(data);
         socket.broadcast.in(json.sala).emit('dibujar-punto',data);
         cl.guardarDatos(function(error, resultado){

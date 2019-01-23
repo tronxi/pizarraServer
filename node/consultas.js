@@ -33,10 +33,11 @@ exports.crearPizarra = function(cb, pizarraNombre) {
                 return;
             }
         }
-        let qr = "insert into pizarra ("+pizarraNombre+", antx, anty, x, y) values ('prueba', -1, -1, -1, -1)";
-        bd.query(qr, function (error, filas){
+        console.log("nombre" + pizarraNombre);
+        let qr2 = "insert into pizarra ("+pizarraNombre+", antx, anty, x, y) values ('prueba', -1, -1, -1, -1)";
+        bd.query(qr2, function (error, filas){
             if(error) {
-                console.log('error al crear pizarras');
+                console.log('error al crear pizarras aqui');
                 return;
             }
             cb(error, "creada");

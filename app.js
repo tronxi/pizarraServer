@@ -76,6 +76,12 @@ io.on('connect', function(socket) {
         obj.push(data);
         let json =  JSON.parse(data);
         socket.broadcast.in(json.sala).emit('dibujar-punto',data);
+        cl.guardarDatos(function(error, resultado){
+            if(error){
+                throw error;
+            }
+
+        }, json.sala, json.antx, json.anty, json.x, json.y)
     });
 });
 

@@ -14,9 +14,6 @@ var cors = require('cors')
 app.use(cors())
 
 
-
-var obj = [];
-
 app.get('//', (req, res) => 
 {
     res.send('Servidor pizarra funcionando');
@@ -67,6 +64,7 @@ io.on('connect', function(socket) {
             if(error){
                 throw error;
             }
+            let obj = [];
             for(let i = 0; i < resultado.length; i++)
             {
                 obj.push({antx: resultado[i].antx,

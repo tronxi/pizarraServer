@@ -38,7 +38,7 @@ app.get('//pizarra/:nombre', (req, res) => {
 
 app.post('//pizarra', (req, res) => {
     let nombre = req.body.nombre;
-
+    console.log(nombre);
     cl.crearPizarra(function(error, resultado){
         if(error){
             throw error;

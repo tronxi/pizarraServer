@@ -27,13 +27,12 @@ exports.crearPizarra = function(cb, pizarraNombre) {
             return;
         }
         for(let i = 0; i < filas.length; i++) {
-            if(filas[0].nombre == pizarraNombre)
+            if(filas[i].nombre == pizarraNombre)
             {
                 cb(error, "existe");
                 return;
             }
         }
-        console.log("nombre" + pizarraNombre);
         let qr2 = "insert into pizarra (nombre, antx, anty, x, y) values ('" + pizarraNombre + "', -1, -1, -1, -1)";
         bd.query(qr2, function (error, filas){
             if(error) {

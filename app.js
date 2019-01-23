@@ -3,7 +3,12 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+cl = require('./node/consultas.js');
+
 app.use(express.static(__dirname));
+var cors = require('cors')
+ 
+app.use(cors())
 
 var obj = [];
 
@@ -11,6 +16,10 @@ app.get('//', (req, res) =>
 {
     res.send('Servidor pizarra funcionando');
 });
+
+app.get('//pizarra', (req, res) => {
+    
+})
 
 io.on('connect', function(socket) {
     console.log('Un cliente se ha conectado');

@@ -9,7 +9,10 @@
   "author": "tronxi",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.16.4",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "mariadb": "^2.0.2-rc",
+    "mysql": "^2.16.0"
   }
 }

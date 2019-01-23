@@ -44,9 +44,10 @@ exports.crearPizarra = function(cb, pizarraNombre) {
     });
 }
 
-exports.guardarDatos = function(cb, pizarraNombre, anx, any, x, y){
-    let qr2 = "insert into pizarra (nombre, antx, anty, x, y) \
-    values ('" + pizarraNombre + "', "+anx+", "+any+", "+x+", "+y+")";
+exports.guardarDatos = function(cb, pizarraNombre, anx, any, x, y, color, tam){
+    let qr2 = "insert into pizarra (nombre, antx, anty, x, y, color, tam) \
+    values ('" + pizarraNombre + "', "+anx+", "+any+", "+x+", "+y+", '"+color+"',\
+    "+tam+")";
     bd.query(qr2, function (error, filas){
         if(error) {
             console.log('error al crear pizarras aqui');
@@ -57,7 +58,7 @@ exports.guardarDatos = function(cb, pizarraNombre, anx, any, x, y){
 }
 
 exports.getDatos = function(cb, pizarraNombre){
-    let qr2 = "select antx, anty, x, y from pizarra where nombre = '"+pizarraNombre+"'";
+    let qr2 = "select antx, anty, x, y, color, tam from pizarra where nombre = '"+pizarraNombre+"'";
     bd.query(qr2, function (error, filas){
         if(error) {
             console.log('error al conseguir datos');

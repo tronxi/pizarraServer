@@ -70,7 +70,9 @@ io.on('connect', function(socket) {
                 obj.push({antx: resultado[i].antx,
                 anty:resultado[i].anty,
                 x: resultado[i].x,
-                y:resultado[i].y});
+                y:resultado[i].y,
+                color: resultado[i].color,
+                tam: resultado[i].tam});
             }
             socket.emit('recibir-datos-iniciales', obj);
         }, data)
@@ -85,7 +87,7 @@ io.on('connect', function(socket) {
                 throw error;
             }
 
-        }, json.sala, json.antx, json.anty, json.x, json.y)
+        }, json.sala, json.antx, json.anty, json.x, json.y, json.color, json.tam)
     });
 });
 

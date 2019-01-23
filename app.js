@@ -74,7 +74,7 @@ io.on('connect', function(socket) {
                 x: resultado[i].x,
                 y:resultado[i].y});
             }
-            socket.emit.in(data)('recibir-datos-iniciales', obj);
+            socket.emit('recibir-datos-iniciales', obj);
         }, data)
         
     });

@@ -34,7 +34,7 @@ exports.crearPizarra = function(cb, pizarraNombre) {
             }
         }
         console.log("nombre" + pizarraNombre);
-        let qr2 = "insert into pizarra ("+pizarraNombre+", antx, anty, x, y) values ('prueba', -1, -1, -1, -1)";
+        let qr2 = "insert into pizarra (nombre, antx, anty, x, y) values ('" + pizarraNombre + "', -1, -1, -1, -1)";
         bd.query(qr2, function (error, filas){
             if(error) {
                 console.log('error al crear pizarras aqui');

@@ -38,7 +38,6 @@ app.get('//pizarra/:nombre', (req, res) => {
 
 app.post('//pizarra', (req, res) => {
     let nombre = req.body.nombre;
-    console.log(nombre);
     cl.crearPizarra(function(error, resultado){
         if(error){
             throw error;
@@ -75,7 +74,9 @@ io.on('connect', function(socket) {
 
     socket.on('nuevo-punto', function(data){
         obj.push(data);
-        socket.broadcast.emit('dibujar-punto',data);
+        let json =  JSON.parse(data);
+        console.log(data.sala);
+        socket.broadcast.in(data.sala).emit('dibujar-punto',data);
     });
 });
 

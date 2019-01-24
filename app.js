@@ -89,7 +89,7 @@ io.on('connect', function(socket) {
                 color: resultado[i].color,
                 tam: resultado[i].tam});
             }
-            socket.in(data).emit('recibir-datos-iniciales', obj);
+            io.in(data).emit('recibir-datos-iniciales', obj);
         }, data)
         
     });

@@ -33,6 +33,21 @@ app.get('//pizarra/:nombre', (req, res) => {
 
 })
 
+app.delete('//pizarra/:nombre', (req, res) => {
+    let nombre = req.params.nombre;
+
+    cl.borrarPizarra(function(error, resultado){
+        if(error){
+            throw error;
+        }
+        else
+        {
+            res.send(JSON.stringify(resultado));
+        }
+    }, nombre)
+
+})
+
 app.post('//pizarra', (req, res) => {
     let nombre = req.body.nombre;
     cl.crearPizarra(function(error, resultado){

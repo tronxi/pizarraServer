@@ -19,6 +19,17 @@ exports.comprobarPizarra = function(cb, pizarraNombre) {
     });
 }
 
+exports.borrarrPizarra = function(cb, pizarraNombre) {
+    let qr = "delete from pizarra where nombre = '"+pizarraNombre+"'";
+    bd.query(qr, function (error, filas){
+        if(error) {
+            console.log('error al borrar pizarras');
+            return;
+        }
+        cb(error, "borrada");
+    });
+}
+
 exports.crearPizarra = function(cb, pizarraNombre) {
     let qr = "select nombre from pizarra";
     bd.query(qr, function (error, filas){

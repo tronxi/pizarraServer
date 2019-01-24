@@ -34,6 +34,7 @@ app.get('//pizarra/:nombre', (req, res) => {
 })
 
 app.post('//borrar', (req, res) => {
+    console.log('entro en borrar');
     let nombre = req.body.nombre;
     cl.borrarPizarra(function(error, resultado){
         if(error){

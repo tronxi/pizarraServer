@@ -33,9 +33,8 @@ app.get('//pizarra/:nombre', (req, res) => {
 
 })
 
-app.delete('//pizarra/:nombre', (req, res) => {
-    let nombre = req.params.nombre;
-    console.log('entro en delete');
+app.post('//borrar', (req, res) => {
+    let nombre = req.body.nombre;
     cl.borrarPizarra(function(error, resultado){
         if(error){
             throw error;

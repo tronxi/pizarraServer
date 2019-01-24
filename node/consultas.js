@@ -20,7 +20,7 @@ exports.comprobarPizarra = function(cb, pizarraNombre) {
 }
 
 exports.borrarPizarra = function(cb, pizarraNombre) {
-    let qr = "delete from pizarra where nombre = '"+pizarraNombre+"'";
+    let qr = "delete from pizarra where nombre = '"+pizarraNombre+"' and antx != -1";
     bd.query(qr, function (error, filas){
         if(error) {
             console.log('error al borrar pizarras');

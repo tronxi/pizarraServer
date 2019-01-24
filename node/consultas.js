@@ -26,7 +26,6 @@ exports.borrarPizarra = function(cb, pizarraNombre) {
             console.log('error al borrar pizarras');
             return;
         }
-        console.log('SE SUPOENE QUE BORRA');
         cb(error, "borrada");
     });
 }

@@ -34,7 +34,6 @@ app.get('//pizarra/:nombre', (req, res) => {
 })
 
 app.delete('//pizarra/:nombre', (req, res) => {
-    console.log('entro en borrar');
     let nombre = req.params.nombre;
     cl.borrarPizarra(function(error, resultado){
         if(error){
@@ -63,15 +62,15 @@ app.post('//pizarra', (req, res) => {
 })
 
 io.on('connect', function(socket) {
-    console.log('Un cliente se ha conectado');
+    //console.log('Un cliente se ha conectado');
     socket.on('union', function(data){
         socket.join(data);
-        console.log('unido a sala ' + data);
+        //console.log('unido a sala ' + data);
         //io.sockets.in(data).emit('message', 'socket');
     });
     socket.on('salir', function(data){
         socket.leave(data);
-        console.log('salir a sala ' + data);
+        //console.log('salir a sala ' + data);
         //io.sockets.in(data).emit('message', 'socket');
     });
     socket.on('iniciar', function(data){

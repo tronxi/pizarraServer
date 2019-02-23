@@ -103,6 +103,13 @@ io.on('connect', function(socket) {
 
         }, json.sala, json.antx, json.anty, json.x, json.y, json.color, json.tam)
     });
+
+    socket.on('new-message', function(data) {
+        let json = JSON.parse(data);
+        console.log(json.sala);
+        console.log(json.mensaje);
+        io.sockets.in(json.sala).emit('message', json.mensaje);
+    });
 });
 
 server.listen(8891, function() {
